@@ -187,7 +187,7 @@ if __name__ == "__main__":
     print("="*30)
 ```
 
-### 🤝 Community & Support
+## 🤝 Community & Support
 
 - GitHub Issues for bug reports and feature requests
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
 - Please include minimal reproducible examples for faster debugging
 
-### 📖 Citing EvoGO
+## 📖 Citing EvoGO
 
 ```
 @article{sun2025evolutionary,
