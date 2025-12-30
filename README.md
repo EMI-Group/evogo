@@ -1,12 +1,9 @@
 <h1 align="center">
-  <a href=" ">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/evox_logo_dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="docs/images/evox_logo_light.png">
-      < img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/images/_static/evox_logo_light.png">
+    <img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
   </picture>
-  </a >
-  <br>
 </h1>
 
 <h2 align="center">
