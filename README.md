@@ -15,7 +15,7 @@
 
 <div align="center">
   <a href="https://www.arxiv.org/abs/2508.00380">
-    < img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoMO Paper on arXiv">
+    < img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoGO Paper on arXiv">
   </a >
 </div>
 
