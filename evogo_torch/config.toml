@@ -1,0 +1,37 @@
+# [hardware]
+gpu_id = 0
+out = "results"
+
+# [optimization]
+func_id = 0
+num_parallel = 1
+repeats = 1
+force_repeat = -1
+
+# [visualization]
+save_iter = [0, 1]
+save_count = -1
+
+# [run]
+max_iter = 2
+batch_size = 10
+gm_batch_size = 10
+
+# [model]
+use_inv = false 
+sample_via_model = true
+use_fast_dist = false
+compile = true
+
+# [ablation]
+use_gp = true
+use_mlp = false
+use_direct = false
+use_gan = false
+use_single_gen = false
+
+# [parameters]
+portion = 0.1
+cycle_scale = 400.0
+slide_window = 0.3
+drop_rate = 0.0078125 # 1/128
