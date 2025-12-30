@@ -1,9 +1,12 @@
 <h1 align="center">
+  <a href=" ">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/evox_logo_dark.png">
     <source media="(prefers-color-scheme: light)" srcset="docs/images/evox_logo_light.png">
-    <img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
+      <img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
   </picture>
+  </a>
+  <br>
 </h1>
 
 <h2 align="center">
@@ -12,8 +15,12 @@
 
 <div align="center">
   <a href="https://www.arxiv.org/abs/2508.00380">
-    <img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoGO Paper on arXiv">
+    <img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoMO Paper on arXiv">
   </a>
+</div>
+
+<div align="center">
+  <img src="docs/papers/overview.png" alt="EvoGO Overview" width="100%">
 </div>
 
 ## 📚 Table of Contents
@@ -68,16 +75,8 @@ bash setup_env_jax.sh
 Here is an example of how to use EvoGo with the JAX backend:
 
 ```python
-import sys
-import os
 import jax
 import jax.numpy as jnp
-
-# 1. Add project root to sys.path to enable importing evogo_jax
-# Assuming this script is in example/jax/ directory
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-if root_dir not in sys.path:
-    sys.path.append(root_dir)
 
 from evogo_jax.evogo import EvoGO
 from test_functions.simple_functions_jax import Rosenbrock
@@ -89,22 +88,21 @@ if __name__ == "__main__":
     seed = 42
     key = jax.random.PRNGKey(seed)
 
-    # 3. Initialize the objective function from test_functions
-    # Rosenbrock function expects input in [0, 1] and scales it internally
-    objective_fn = Rosenbrock(dim=dim, key=key, parallels=num_parallel)
+    # 3. Initialize the problem
+    problem = Rosenbrock(dim=dim, key=key, parallels=num_parallel)
 
-    # 4. Initialize the solver
+    # 4. Initialize the algorithm
     solver = EvoGO(
-        max_iter=5,          # Number of iterations
-        batch_size=100,      # Initial sample size
-        gm_batch_size=100,   # Generative model sample size
-        num_parallel=num_parallel, # Number of parallel runs
-        debug=True           # Print progress
+        max_iter=5,          
+        batch_size=100,     
+        gm_batch_size=100,  
+        num_parallel=num_parallel, 
+        debug=True           
     )
 
     # 5. Call the solve method
     print(f"Starting to solve {dim}-dimensional Rosenbrock function...")
-    best_x, best_y = solver.solve(objective_fn, dim=dim, seed=seed)
+    best_x, best_y = solver.solve(problem, dim=dim, seed=seed)
 
     print("\n" + "="*30)
     print(f"Optimization Complete!")
@@ -128,15 +126,8 @@ bash setup_env_torch.sh
 Here is an example of how to use EvoGo with the PyTorch backend:
 
 ```python
-import sys
-import os
 import torch
 import numpy as np
-
-# Add project root to sys.path
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-if root_dir not in sys.path:
-    sys.path.append(root_dir)
 
 from evogo_torch.evogo import EvoGO
 from test_functions.simple_functions import HarderNumerical
@@ -147,30 +138,25 @@ if __name__ == "__main__":
     num_parallel = 2
     seed = 42
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    # device = torch.device(device) # HarderNumerical expects torch.device or string? 
-    # checking simple_functions.py: re_init takes torch.device. __init__ takes torch.device.
     device_obj = torch.device(device)
     
     print(f"Running on {device}")
 
-    # Initialize the objective function from test_functions
-    # HarderNumerical wraps the function with random offsets and rotations (unless affine=False)
-    # We use affine=False to match the simple Rosenbrock behavior if desired, or True for harder version.
-    # Let's use defaults (affine=True) as it is "HarderNumerical".
-    objective_fn = HarderNumerical(
+    # Initialize the problem
+    problem = HarderNumerical(
         dim=dim, 
         device=device_obj, 
         eval_fn=HarderNumerical.Rosenbrock, 
         instances=num_parallel
     )
 
-    # Initialize the solver
+    # Initialize the algorithm
     solver = EvoGO(
         max_iter=5,
         batch_size=100,
         gm_batch_size=100,
         num_parallel=num_parallel,
-        use_gp=True, # Use Gaussian Process
+        use_gp=True, 
         debug=True,
         gpu_id=0 if "cuda" in device else -1
     )
@@ -178,7 +164,7 @@ if __name__ == "__main__":
     # Call the solve method
     print(f"Starting to solve {dim}-dimensional Rosenbrock function (HarderNumerical)...")
     
-    best_x, best_y = solver.solve(objective_fn, dim=dim, seed=seed, device=device)
+    best_x, best_y = solver.solve(problem, dim=dim, seed=seed, device=device)
 
     print("\n" + "="*30)
     print(f"Optimization Complete!")
@@ -187,15 +173,14 @@ if __name__ == "__main__":
     print("="*30)
 ```
 
-## Community & Support
+### 🤝 Community & Support
 
-- GitHub Issues for bug reports and feature requests
+We welcome contributions and look forward to your feedback!
 
-- Contributions are welcome via pull requests
+- Engage in discussions and share your experiences on [GitHub Issues](https://github.com/EMI-Group/evogo/issues).
+- Join our QQ group (ID: 297969717).
 
-- Please include minimal reproducible examples for faster debugging
-
-## Citing EvoGO
+### 📖 Citing EvoGO
 
 ```
 @article{sun2025evolutionary,
