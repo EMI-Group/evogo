@@ -1,12 +1,12 @@
 <h1 align="center">
-  <a href=" ">
+
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/evox_logo_dark.png">
     <source media="(prefers-color-scheme: light)" srcset="docs/images/evox_logo_light.png">
-      <img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
+    <img alt="EvoX Logo" height="50" src="docs/images/evox_logo_light.png">
   </picture>
-  </a>
-  <br>
+
+
 </h1>
 
 <h2 align="center">
@@ -15,12 +15,12 @@
 
 <div align="center">
   <a href="https://www.arxiv.org/abs/2508.00380">
-    <img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoMO Paper on arXiv">
+    <img src="https://img.shields.io/badge/paper-arxiv-red?style=for-the-badge" alt="EvoGO Paper on arXiv">
   </a>
 </div>
 
 <div align="center">
-  <img src="docs/papers/overview.png" alt="EvoGO Overview" width="100%">
+  <img src="docs/papers/overview.png" alt="EvoGO Overview" width="80%">
 </div>
 
 ## 📚 Table of Contents
