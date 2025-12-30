@@ -47,7 +47,7 @@ EvoGO is designed to be compatible with EvoX.
 
 ## ✨ Key Features
 
-### 🚫 Fully Data-Driven Optimization (Replacing Handcrafted Operators)
+### 🚫 Fully Data-Driven Optimization
 - Replaces operator-centric evolutionary design with learned generation to drive the search process.
 - Reduces reliance on manual heuristics and extensive parameter tuning.
 
