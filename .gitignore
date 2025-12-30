@@ -6,7 +6,7 @@ __pycache__
 *.gif
 data
 
-.vs
+.vscode
 x64
 build
 

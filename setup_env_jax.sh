@@ -49,3 +49,5 @@ fi
 echo -e "${GREEN}Setup complete!${NC}"
 echo -e "${GREEN}To activate the environment, run:${NC}"
 echo -e "conda activate $ENV_NAME"
+
+conda activate $ENV_NAME
