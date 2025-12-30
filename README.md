@@ -20,7 +20,7 @@
 </div>
 
 <div align="center">
-  <img src="docs/papers/overview.png" alt="EvoGO Overview" width="80%">
+  <img src="docs/papers/overview.png" alt="EvoGO Overview" width="90%">
 </div>
 
 ## 📚 Table of Contents
