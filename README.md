@@ -38,7 +38,11 @@
 
 ## 🔍 Overview
 
-**EvoGO (Evolutionary Generative Optimization)** is a **fully data-driven framework for black-box optimization** designed to overcome a key bottleneck of traditional evolutionary optimization—its reliance on **operator-level manual design** (e.g., crossover and mutation rules), which limits adaptability and makes performance heavily dependent on tuning and domain knowledge. By shifting the optimization paradigm toward **learning-driven search behavior from historical evaluations**, EvoGO reduces heuristic dependency and improves robustness across complex optimization scenarios. EvoGO supports both **JAX and PyTorch** backends and is designed to be compatible with **EvoX**.
+Evolutionary Generative Optimization(EvoGO) is a fully data-driven framework for black-box optimization.
+It addresses a core limitation of traditional evolutionary optimization that relies on manually designed operators.
+EvoGO replaces heuristic rules by learning search behavior from historical evaluations.
+The framework supports both JAX and PyTorch backends.
+EvoGO is designed to be compatible with EvoX.
 
 
 ## ✨ Key Features
