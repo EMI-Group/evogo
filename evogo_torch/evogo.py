@@ -30,7 +30,7 @@ class EvoGO:
         use_gan: bool = False,
         single_gen: bool = False,
         sample_via_model: bool = True,
-        compile: bool = False,
+        compile: bool = True,
         use_lcb: bool = False,
         gpu_id: int = 0,
         output_dir: Optional[str] = None,
@@ -140,35 +140,13 @@ class EvoGO:
             
             datasets_x, datasets_y, histories = evogo_step(
                 args,
-                objective_fn if self.use_direct else None, # Pass objective_fn only if use_direct is True, or if evogo_step needs it for other reasons? 
-                # Checking step.py: evogo_step takes eval_fn. If use_direct is False, it seems it doesn't use eval_fn except for final evaluation of new points?
-                # Actually step.py line 325: if eval_fn is not None: new_datasets_y = eval_fn(new_datasets_x)
-                # So we MUST pass objective_fn to evaluate new points.
+                objective_fn, 
                 datasets_x,
                 datasets_y,
                 histories,
                 self.debug,
                 None # SAVE
             )
-            
-            # If evogo_step didn't evaluate (eval_fn was None), we need to do it here?
-            # But wait, step.py signature: eval_fn: Callable... | None.
-            # If I pass None, step.py won't evaluate new points and won't concatenate them?
-            # step.py line 330: else: datasets_x = new_datasets_x.
-            # So if I pass None, it returns only new x, and no y.
-            # But I want the loop to continue with full datasets.
-            # So I MUST pass objective_fn.
-            
-            # Re-checking step.py logic:
-            # if eval_fn is not None:
-            #    new_datasets_y = eval_fn(new_datasets_x)
-            #    datasets_x = concat(...)
-            #    datasets_y = concat(...)
-            # else:
-            #    datasets_x = new_datasets_x (ONLY new points? This seems to break the loop if it expects full history or accumulated dataset)
-            
-            # However, in main.py line 379, it passes `functions[ARGS.func_id]`.
-            # So yes, I should pass objective_fn.
             
             mins_y = torch.min(datasets_y, dim=1).values
             if self.debug:

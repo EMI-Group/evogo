@@ -33,9 +33,9 @@ if __name__ == "__main__":
 
     # Initialize the solver
     solver = EvoGO(
-        max_iter=5,
-        batch_size=100,
-        gm_batch_size=100,
+        max_iter=10,
+        batch_size=1000,
+        gm_batch_size=1000,
         num_parallel=num_parallel,
         use_gp=True, # Use Gaussian Process
         debug=True,

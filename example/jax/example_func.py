@@ -25,9 +25,9 @@ if __name__ == "__main__":
 
     # 4. Initialize the solver
     solver = EvoGO(
-        max_iter=5,          # Number of iterations
-        batch_size=100,      # Initial sample size
-        gm_batch_size=100,   # Generative model sample size
+        max_iter=10,          # Number of iterations
+        batch_size=1000,      # Initial sample size
+        gm_batch_size=1000,   # Generative model sample size
         num_parallel=num_parallel, # Number of parallel runs
         debug=True           # Print progress
     )
