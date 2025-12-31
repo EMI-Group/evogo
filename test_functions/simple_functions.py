@@ -134,3 +134,74 @@ class HarderNumerical(torch.nn.Module):
             * torch.exp(torch.abs(1 - torch.linalg.vector_norm(w, dim=-1) / torch.pi))
         )
         return val
+
+
+class Ackley(torch.nn.Module):
+    def __init__(self, dim: int, device: torch.device, parallels: int = 1, offseted: bool = True):
+        super().__init__()
+        self.dim = dim
+        self.__offsets = (torch.rand(parallels, dim, device=device) * 10 - 5) if offseted else torch.zeros(
+            (parallels, dim), device=device)
+        self.__offsets = self.__offsets.unsqueeze(1)
+        print(f"[DEBUG] Ackley min = {self.forward((self.__offsets + 20) / 40).ravel()}")
+
+    def forward(self, x: torch.Tensor):
+        assert x.ndim == 3
+        assert x.size(0) == self.__offsets.size(0) and x.size(2) == self.__offsets.size(2)
+        w = 40 * x - 20 - self.__offsets
+        val = -20 * torch.exp(-0.2 * torch.sqrt(torch.mean(w**2, dim=-1))) - torch.exp(torch.mean(torch.cos(2 * torch.pi * w),
+                                                                                         dim=-1)) + 20 + torch.e
+        return val
+
+
+class Rosenbrock(torch.nn.Module):
+    def __init__(self, dim: int, device: torch.device, parallels: int = 1, offseted: bool = True):
+        super().__init__()
+        self.dim = dim
+        self.__offsets = (torch.rand(parallels, dim, device=device) * 5 - 2.5) if offseted else torch.zeros(
+            (parallels, dim), device=device)
+        self.__offsets = self.__offsets.unsqueeze(1)
+        print(f"[DEBUG] Rosenbrock min = {self.forward((self.__offsets + 10) / 20)}")
+
+    def forward(self, x: torch.Tensor):
+        assert x.ndim == 3
+        assert x.size(0) == self.__offsets.size(0) and x.size(2) == self.__offsets.size(2)
+        w = 20 * x - 10 - self.__offsets + 1
+        val = torch.sum(100 * (w[:, :, 1:] - w[:, :, :-1]**2)**2 + (w[:, :, :-1] - 1)**2, dim=-1)
+        return val
+
+
+class Rastrigin(torch.nn.Module):
+    def __init__(self, dim: int, device: torch.device, parallels: int = 1, offseted: bool = True):
+        super().__init__()
+        self.dim = dim
+        self.__offsets = (torch.rand(parallels, dim, device=device) * 16 - 8) if offseted else torch.zeros(
+            (parallels, dim), device=device)
+        self.__offsets = self.__offsets.unsqueeze(1)
+        print(f"[DEBUG] Rastrigin min = {self.forward((self.__offsets + 32) / 64)}")
+
+    def forward(self, x: torch.Tensor):
+        assert x.ndim == 3
+        assert x.size(0) == self.__offsets.size(0) and x.size(2) == self.__offsets.size(2)
+        w = 64 * x - 32 - self.__offsets
+        val = 10 * self.dim + torch.sum(w**2 - 10 * torch.cos(2 * torch.pi * w), dim=-1)
+        return val
+
+
+class Levy(torch.nn.Module):
+    def __init__(self, dim: int, device: torch.device, parallels: int = 1, offseted: bool = True):
+        super().__init__()
+        self.dim = dim
+        self.__offsets = (torch.rand(parallels, dim, device=device) * 5 - 2.5) if offseted else torch.zeros(
+            (parallels, dim), device=device)
+        self.__offsets = self.__offsets.unsqueeze(1)
+        print(f"[DEBUG] Levy min = {self.forward((self.__offsets + 10) / 20)}")
+
+    def forward(self, x: torch.Tensor):
+        assert x.ndim == 3
+        assert x.size(0) == self.__offsets.size(0) and x.size(2) == self.__offsets.size(2)
+        w = 1 + (20 * x - 10 - self.__offsets) / 4
+        val = torch.sin(torch.pi * w[:, :, 0])**2 + \
+                (w[:, :, -1] - 1)**2 * (1 + torch.sin(2 * torch.pi * w[:, :, -1])**2) + \
+                torch.sum((w[:, :, :-1] - 1)**2 * (1 + 10 * torch.sin(torch.pi * w[:, :, :-1] + 1)**2), dim=-1)
+        return val
