@@ -9,7 +9,7 @@ if root_dir not in sys.path:
     sys.path.append(root_dir)
 
 from evogo_torch.evogo import EvoGO
-from test_functions.simple_functions import HarderNumerical
+from test_functions.simple_functions import Rosenbrock
 
 if __name__ == "__main__":
     # Configuration
@@ -24,14 +24,11 @@ if __name__ == "__main__":
     print(f"Running on {device}")
 
     # Initialize the objective function from test_functions
-    # HarderNumerical wraps the function with random offsets and rotations (unless affine=False)
-    # We use affine=False to match the simple Rosenbrock behavior if desired, or True for harder version.
-    # Let's use defaults (affine=True) as it is "HarderNumerical".
-    objective_fn = HarderNumerical(
+    # Rosenbrock function expects input in [0, 1] and scales it internally
+    objective_fn = Rosenbrock(
         dim=dim, 
         device=device_obj, 
-        eval_fn=HarderNumerical.Rosenbrock, 
-        instances=num_parallel
+        parallels=num_parallel
     )
 
     # Initialize the solver
@@ -46,7 +43,7 @@ if __name__ == "__main__":
     )
 
     # Call the solve method
-    print(f"Starting to solve {dim}-dimensional Rosenbrock function (HarderNumerical)...")
+    print(f"Starting to solve {dim}-dimensional Rosenbrock function...")
     
     best_x, best_y = solver.solve(objective_fn, dim=dim, seed=seed, device=device)
 
