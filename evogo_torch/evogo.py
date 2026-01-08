@@ -30,7 +30,7 @@ class EvoGO:
         use_gan: bool = False,
         single_gen: bool = False,
         sample_via_model: bool = True,
-        compile: bool = True,
+        compile: bool = False,
         use_lcb: bool = False,
         gpu_id: int = 0,
         output_dir: Optional[str] = None,
