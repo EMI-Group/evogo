@@ -190,7 +190,7 @@ We welcome contributions and look forward to your feedback!
 @article{sun2025evolutionary,
   title     = {Evolutionary Generative Optimization: Towards Fully Data-Driven Evolutionary Optimization via Generative Learning},
   author    = {Jiang, Tao and Sun, Kebin and Liang, Zhenyu and Cheng, Ran and Jin, Yaochu and Tan, Kay Chen},
-  journal   = {arXiv preprint arXiv:2508.00380},
+  journal   = {IEEE Transactions on Evolutionary Computation},
   year      = {2025}
 }
 
