@@ -192,6 +192,7 @@ We welcome contributions and look forward to your feedback!
   author    = {Jiang, Tao and Sun, Kebin and Liang, Zhenyu and Cheng, Ran and Jin, Yaochu and Tan, Kay Chen},
   journal   = {IEEE Transactions on Evolutionary Computation},
   year      = {2025}
+  doi       = {10.1109/TEVC.2026.3664432}
 }
 
 ```
